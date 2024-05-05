@@ -18,7 +18,7 @@
     width: 100%;
     height: 100%; 
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.5); /* Imposta l'overlay trasparente */
+    background-color: rgba(126, 121, 121, 0.5); /* Imposta l'overlay trasparente */
 }
 .close {
     color: black;
@@ -27,15 +27,14 @@
     font-size: 28px;
     font-weight: bold;
 }
-table{
+.formTable{
     width: 350px;
     height: 500px;
     background-color: lightgray;
-    border: 5px solid rgb(0, 0, 0);
     border-radius: 5%;
     
 }
-td{
+.formTable td{
     display: grid;
     padding: 20px;
 }

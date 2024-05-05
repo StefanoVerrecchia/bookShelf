@@ -1,0 +1,24 @@
+.table-container {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-header {
+    background-color: rgb(36, 34, 34);
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.table-header th {
+    padding: 10px;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-cell {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}

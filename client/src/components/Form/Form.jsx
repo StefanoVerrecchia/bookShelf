@@ -28,7 +28,7 @@ const Form = ({ book, setBook, addBook, isEdit, editBook }) => {
                     <form onSubmit={handleFormSubmit}>
                         <div className='modal'>
 
-                            <table>
+                            <table className='formTable'>
                                 <tbody>
                                     <tr>
                                         <td>
@@ -55,6 +55,11 @@ const Form = ({ book, setBook, addBook, isEdit, editBook }) => {
                                                     (<button type="submit">Aggiungi</button>)
                                             }
 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            
                                         </td>
                                     </tr>
                                 </tbody>

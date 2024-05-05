@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import ListBook from './components/Book/ListBook'
 import Form from './components/Form/Form';
+import TableBooks from './components/Book/TableBooks';
 
 const App = () => {
   const [listBooks, setlistBooks] = useState([]);
@@ -17,6 +17,7 @@ const App = () => {
         setlistBooks(books.data);
       })
       .catch(error =>{
+        console.log('error getting');
         console.log(error);
       })
   }, []);
@@ -27,6 +28,7 @@ const App = () => {
         console.log(response);
         const newbooks = response.data;
         setlistBooks(prevState => [...prevState, newbooks.data])
+        document.getElementById('form').style.display = 'none';
       })
       .catch(error => {
         console.error('Error adding book:', error);
@@ -57,21 +59,43 @@ const App = () => {
       console.error('Error editing book:', error);
     })
   }
+//DELETE
+const deleteBook = (book) =>{
+  console.log('delete');
+  console.log(book);
+  axios.delete(`http://localhost:8000/v1/books/${book._id}`)
+  .then(response =>{
+    console.log(response.data);
+      setlistBooks(listBooks.filter(item => item._id !== book._id));
+  })
+  .catch(error =>{
+    console.error('Error editing book:', error);
+  })
+}
 
 
   const openModal = (book) => {
+    console.log('open modal');
+    console.log(book);
     setBook(book);
-    setIsEdit(true)
+    if(Object.keys(book).length === 0){
+      setIsEdit(false)
+    }else{
+      setIsEdit(true)
+    }
+    
     document.getElementById('form').style.display = 'block'
   }
 
 
+  console.log('isEdit');
+  console.log(isEdit);
   console.log(listBooks.length);
   return (
 
-    <div className='root'>
+    <div >
       <Form book = {selectedBook} setBook ={setBook} addBook={addBook} isEdit = {isEdit} editBook = {editBook}/>
-      <ListBook openModal={openModal} listBooks={listBooks} />
+      <TableBooks openModal={openModal} listBooks={listBooks} deleteBook={deleteBook}/>
     </div>
   )
 }

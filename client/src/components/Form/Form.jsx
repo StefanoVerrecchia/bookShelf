@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './form.css'
 const Form = ({ book, setBook, addBook, isEdit, editBook }) => {
-    //const [newBook, setNewBook] = useState({});
 
     const handleChange = (e) => {
         const { name, value } = e.currentTarget;

@@ -1,5 +1,10 @@
 const express = require('express');
-var cors = require('cors');
+const cors = require('cors');
+
+const   dotenv = require('dotenv');
+        dotenv.config({ path: './config.env' });
+const   DATABASE = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
+
 const mongoose = require('mongoose');
 const { Resource } = require('express-toolkit')
 const Book = require('./model/bookModel.js');
@@ -18,7 +23,7 @@ app.get('/', (req,res)=>{res.send('HOME')});
 BookResource.mount('/v1/books', app)
 
 
-mongoose.connect('mongodb+srv://stefanoverrecchia96:bTm9rpUH0Fyg5z18@cluster0.yhq40ar.mongodb.net/BookShelf')
+mongoose.connect(DATABASE)
     .then(console.log('CONNESSO AL DB'))
     .catch(err => console.log(err));
 

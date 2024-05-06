@@ -1,0 +1,47 @@
+.dashboard{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    height: 100vh;
+}
+.dashBoardContent{
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 100px;
+}
+.dashBoardContent article{
+    width: 250px;
+    height: min-content;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+
+}
+.dashBoardContent article:hover{
+    background-color: rgb(202, 214, 209);
+
+}
+.dashBoardHeader{
+    display: flex;
+    margin: 5px;
+    border: 1px solid black;
+}
+.dashBoardHeader input{
+    width: 100%;
+    margin: 5px;
+}
+
+.dashBoardHeader button{
+    border-radius: 5px;
+}
+.dashboardSideMenu{
+    height: 100%;
+    border-right: 1px solid black;
+}
+.dashboardSideMenu p{
+    font-size: large;
+    border-bottom: 1px solid black;
+}.dashboardSideMenu p:hover{
+    text-align: center;
+    background-color: rgb(202, 214, 209);
+}

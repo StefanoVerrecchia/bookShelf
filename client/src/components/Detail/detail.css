@@ -1,0 +1,61 @@
+.detailBookContainerOver{
+    display: none;
+    width: 100%;
+    border: 1px solid black;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.detailBook{
+    width: 50%;
+    border: 1px solid black;
+    background-color: azure;
+}
+.detailBookHeader{
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+}
+.detailBookHeader h2{
+    text-align: left;
+    width: 100%;
+}
+.detailBookHeader button{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin: 2px;
+    border-radius: 5px;
+}
+.detailBookBody{
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 5px;
+}
+.detailBookBody img{
+}
+.sideInput{
+    width: 100%;
+    padding: 5px;
+}
+.sideInput p{
+    margin: 25px;
+}
+
+.sideInput input {
+    display: grid;
+    margin-left: 15px;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 250px;
+}
+.sideInput input:hover {
+    background-color: rgba(215, 206, 206, 0.4);
+}

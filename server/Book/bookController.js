@@ -1,4 +1,4 @@
-const Book = require('../model/bookModel.js');
+const Book = require('./bookModel.js');
 const { Controller } = require('express-toolkit')
 
 const controller = new Controller({

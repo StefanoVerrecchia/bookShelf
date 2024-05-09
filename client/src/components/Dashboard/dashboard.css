@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 150px 1fr;
     height: 100vh;
+    background-color: #fafafa 
 }
 .dashBoardContent{
     display: grid;
@@ -12,7 +13,7 @@
     width: 250px;
     height: min-content;
     margin: 10px;
-    border: 1px solid black;
+    border: 4px solid #4E5F75;
     border-radius: 5px;
     text-align: center;
 
@@ -24,7 +25,6 @@
 .dashBoardHeader{
     display: flex;
     margin: 5px;
-    border: 1px solid black;
 }
 .dashBoardHeader input{
     width: 100%;
@@ -33,15 +33,17 @@
 
 .dashBoardHeader button{
     border-radius: 5px;
+    border: 2px solid #4E5F75;
 }
 .dashboardSideMenu{
     height: 100%;
-    border-right: 1px solid black;
+    border-right: 4px solid #4E5F75;
 }
 .dashboardSideMenu p{
     font-size: large;
     border-bottom: 1px solid black;
-}.dashboardSideMenu p:hover{
-    text-align: center;
+}
+
+.dashboardSideMenu p:hover{
     background-color: rgb(202, 214, 209);
 }

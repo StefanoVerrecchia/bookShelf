@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import Form from './components/Form/Form';
 import Dashboard from './components/Dashboard/Dashboard';
 import Detail from './components/Detail/Detail';
+import LoginForm from './components/LoginForm/LoginForm';
 
 import {
   BrowserRouter as Router,
@@ -14,6 +15,32 @@ const App = () => {
   const [fileteredBooks, setfileteredBooks] = useState([]);
   const [selectedBook, setBook] = useState({});
   const [isEdit, setIsEdit] = useState(false);
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
+
+  const handleLogin = async () => {
+    await axios.post('http://localhost:8000/v1/login', { username, password })
+      .then(response => {
+        console.log('login');
+        console.log(response.data);
+        const user = response.data;
+        window.localStorage.setItem('loggedUser', JSON.stringify(user));
+        setUser(user);
+        setUsername('');
+        setPassword('');
+      })
+      .catch(error => {
+
+      })
+  }
+  useEffect(() => {
+    const loggedUser = window.localStorage.getItem('loggedUser');
+    if (loggedUser) {
+      const user = JSON.parse(loggedUser);
+      setUser(user);
+    }
+  }, []);
   //GET
   useEffect(() => {
     console.log('effect');
@@ -31,11 +58,12 @@ const App = () => {
   }, []);
   //POST
   const addBook = (newBook) => {
-    axios.post('http://localhost:8000/v1/books', newBook)
+    axios.post('http://localhost:8000/v1/books', newBook, { headers: { Authorization: user.token } })
       .then(response => {
         console.log(response);
         const newbooks = response.data;
         setlistBooks(prevState => [...prevState, newbooks.data])
+        setfileteredBooks(prevState => [...prevState, newbooks.data])
         document.getElementById('form').style.display = 'none';
       })
       .catch(error => {
@@ -75,6 +103,7 @@ const App = () => {
       .then(response => {
         console.log(response.data);
         setlistBooks(listBooks.filter(item => item._id !== book._id));
+        setfileteredBooks(listBooks.filter(item => item._id !== book._id));
         document.getElementById('detailBookId').style.display = 'none'
       })
       .catch(error => {
@@ -120,22 +149,31 @@ const App = () => {
     }
   }
   console.log(listBooks.length);
+  const linkStyle = {
+    margin: "1rem",
+    textDecoration: "none",
+    color: '#4E5F75'
+  };
   return (
 
-    <div className="dashboard">
-      <Router>
-        <div className="dashboardSideMenu">
-          <p><Link to="/">HOME</Link></p>
-          <p><Link to="/book">BOOK</Link></p>
-        </div>
-        <Routes>
-          <Route path="/book" element={<Dashboard openModal={openModal} openDetail={openDetail} fileteredBooks={fileteredBooks} filterArray={filterArray} />} />
-        </Routes>
-      </Router>
+    <>
+      {user ?
+        (<Router>
+          <div className="dashboard">
+            <div className="dashboardSideMenu">
+              <p><Link style={linkStyle} to="/">HOME</Link></p>
+              <p><Link  style={linkStyle}to="/book">BOOK</Link></p>
+            </div>
+            <Routes>
+              <Route path="/book" element={<Dashboard openModal={openModal} openDetail={openDetail} fileteredBooks={fileteredBooks} filterArray={filterArray} />} />
+            </Routes></div>
+        </Router>):
+        (<LoginForm username={username} password={password} setUsername={setUsername} setPassword={setPassword} doLogin={handleLogin} />)}
 
       <Form book={selectedBook} setBook={setBook} addBook={addBook} isEdit={isEdit} editBook={editBook} />
       <Detail book={selectedBook} setBook={setBook} editBook={editBook} deleteBook={deleteBook} />
-    </div>
+    </>
+
   )
 }
 export default App

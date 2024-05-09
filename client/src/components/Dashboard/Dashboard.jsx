@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useContext  } from 'react';
 import './dashboard.css'
 const Dashboard = ({ openModal, openDetail, fileteredBooks, filterArray}) => {
-    
     console.log('fileteredBooks');
     console.log(fileteredBooks);
     const showModal = (book) => {

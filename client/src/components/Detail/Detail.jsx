@@ -1,5 +1,8 @@
 
 import './detail.css'
+import deleteImage from '../../Assets/deleteButton.png'
+import editImage from '../../Assets/editButton.png'
+import closeImage from '../../Assets/closeButton.png'
 export default function Detail({ book, setBook, editBook, deleteBook }) {
 
   const keys = Object.keys(book);
@@ -22,9 +25,9 @@ export default function Detail({ book, setBook, editBook, deleteBook }) {
         <div className="detailBookHeader">
           <h2>Dettagli</h2>
           
-            <button type="submit" onClick={() => editBook(book)}>Modifica</button>
-            <button type="submit" onClick={() => deleteBook(book)}>Elimina</button>
-            <span className='close' onClick={() => document.getElementById("detailBookId").style.display = "none"} >&times;</span>
+            <button type="submit" onClick={() => editBook(book)}><img src={deleteImage}></img></button>
+            <button type="submit" onClick={() => deleteBook(book)}><img src={editImage}></img></button>
+            <button className='close' onClick={() => document.getElementById("detailBookId").style.display = "none"} ><img src={closeImage}></img></button>
 
         </div>
         <div className='detailBookBody'>

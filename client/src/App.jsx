@@ -65,6 +65,9 @@ const App = () => {
         setlistBooks(prevState => [...prevState, newbooks.data])
         setfileteredBooks(prevState => [...prevState, newbooks.data])
         document.getElementById('form').style.display = 'none';
+        document.getElementById('title').value='';
+        document.getElementById('author').value='';
+        document.getElementById('publicationDate').value='';
       })
       .catch(error => {
         console.error('Error adding book:', error);
@@ -174,7 +177,7 @@ const enableEdit = () =>{
         </Router>):
         (<LoginForm username={username} password={password} setUsername={setUsername} setPassword={setPassword} doLogin={handleLogin} />)}
 
-      <Form book={selectedBook} setBook={setBook} addBook={addBook}  editBook={editBook} />
+      <Form book={selectedBook} setBook={setBook} addBook={addBook} />
       <Detail book={selectedBook} setBook={setBook} editBook={editBook} deleteBook={deleteBook} isEdit ={isEdit} enableEdit={enableEdit}/>
     </>
 

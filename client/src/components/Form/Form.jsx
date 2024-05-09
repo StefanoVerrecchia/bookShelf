@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './form.css'
-const Form = ({ book, setBook, addBook, editBook }) => {
+const Form = ({ book, setBook, addBook }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.currentTarget;
@@ -28,19 +28,19 @@ const Form = ({ book, setBook, addBook, editBook }) => {
                                     <tr>
                                         <td>
                                             <label htmlFor="title">Title:</label>
-                                            <input type="text" id="title" name="title" value={book.title || ''} onChange={handleChange} />
+                                            <input type="text" id="title" name="title"  onChange={handleChange} />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label htmlFor="title">Author:</label>
-                                            <input type="text" id="author" name="author" value={book.author || ''} onChange={handleChange} />
+                                            <input type="text" id="author" name="author"  onChange={handleChange} />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label htmlFor="title">Publication date:</label>
-                                            <input type="text" id="publicationDate" name="publicationDate" value={book.publicationDate || ''} onChange={handleChange} />
+                                            <input type="text" id="publicationDate" name="publicationDate"  onChange={handleChange} />
                                         </td>
                                     </tr>
                                     <tr>

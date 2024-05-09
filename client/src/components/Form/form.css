@@ -32,9 +32,20 @@
     height: 500px;
     background-color: lightgray;
     border-radius: 5%;
+    font-size: large;
     
 }
 .formTable td{
     display: grid;
     padding: 20px;
+}
+.formTable input{
+    margin: 20px;
+    border-color:  #4E5F75;
+    height: 25px;
+}
+
+.formTable button{
+    height: 40px;
+    background-color: #4E5F75;
 }

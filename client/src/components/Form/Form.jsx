@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './form.css'
-const Form = ({ book, setBook, addBook }) => {
+const Form = ({ book, setBook, addBook, errorMessage }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.currentTarget;
@@ -13,7 +13,7 @@ const Form = ({ book, setBook, addBook }) => {
     };
     const handleFormSubmit = (e) => {
         e.preventDefault();
-            addBook(book);
+        addBook(book);
     }
     return (
         <>
@@ -28,31 +28,35 @@ const Form = ({ book, setBook, addBook }) => {
                                     <tr>
                                         <td>
                                             <label htmlFor="title">Title:</label>
-                                            <input type="text" id="title" name="title"  onChange={handleChange} />
+                                            <input type="text" id="title" name="title" onChange={handleChange} />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label htmlFor="title">Author:</label>
-                                            <input type="text" id="author" name="author"  onChange={handleChange} />
+                                            <input type="text" id="author" name="author" onChange={handleChange} />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <label htmlFor="title">Publication date:</label>
-                                            <input type="text" id="publicationDate" name="publicationDate"  onChange={handleChange} />
+                                            <input type="text" id="publicationDate" name="publicationDate" onChange={handleChange} />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            
-                                                    <button type="submit">Aggiungi</button>
+
+                                            <button type="submit">Aggiungi</button>
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            
+                                            <div id='errorBanner' className="alert">
+                                                <span className="closebtn" onClick={()=> document.getElementById("errorBanner").style.display = "none"}>&times;</span>
+                                                {errorMessage}
+                                            </div>
+
                                         </td>
                                     </tr>
                                 </tbody>

@@ -20,7 +20,7 @@ BookResource.registerHook('pre:create', async (req, res, next) => {
         req.body.user = user._id;
         next();
     }catch(error){
-        console.log(error);
+        console.log('error ---> ' , error);
         return res.status(401).json({ error: error })
     }
 });

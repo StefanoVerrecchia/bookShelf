@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Detail from './components/Detail/Detail';
 import LoginForm from './components/LoginForm/LoginForm';
 
+
 import {
   BrowserRouter as Router,
   Routes, Route, Link
@@ -17,7 +18,11 @@ const App = () => {
   const [isEdit, setIsEdit] = useState(true);
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const [user, setUser] = useState(null)
+
+
+  console.log(localStorage.getItem('loggedUser'));
 
   const handleLogin = async () => {
     await axios.post('http://localhost:8000/v1/login', { username, password })
@@ -64,13 +69,20 @@ const App = () => {
         const newbooks = response.data;
         setlistBooks(prevState => [...prevState, newbooks.data])
         setfileteredBooks(prevState => [...prevState, newbooks.data])
+
         document.getElementById('form').style.display = 'none';
         document.getElementById('title').value='';
         document.getElementById('author').value='';
         document.getElementById('publicationDate').value='';
       })
       .catch(error => {
-        console.error('Error adding book:', error);
+        const err = error.response.data;
+        console.error('Error adding book:', err.error.message);
+        if(err.error.message ==='jwt expired'){
+          setErrorMessage('sessione scaduta');
+          document.getElementById('errorBanner').style.display = 'inline';
+          window.localStorage.clear();
+        }
       });
   }
   //PUT
@@ -177,7 +189,7 @@ const enableEdit = () =>{
         </Router>):
         (<LoginForm username={username} password={password} setUsername={setUsername} setPassword={setPassword} doLogin={handleLogin} />)}
 
-      <Form book={selectedBook} setBook={setBook} addBook={addBook} />
+      <Form book={selectedBook} setBook={setBook} addBook={addBook} errorMessage={errorMessage}/>
       <Detail book={selectedBook} setBook={setBook} editBook={editBook} deleteBook={deleteBook} isEdit ={isEdit} enableEdit={enableEdit}/>
     </>
 

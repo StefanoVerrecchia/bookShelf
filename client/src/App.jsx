@@ -14,7 +14,7 @@ const App = () => {
   const [listBooks, setlistBooks] = useState([]);
   const [fileteredBooks, setfileteredBooks] = useState([]);
   const [selectedBook, setBook] = useState({});
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(true);
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
@@ -88,7 +88,8 @@ const App = () => {
         console.log('updatedList');
         console.log(updatedList);
         setlistBooks(updatedList);
-        setIsEdit(false);
+        setfileteredBooks(updatedList);
+        setIsEdit(true);
         document.getElementById('detailBookId').style.display = 'none'
       })
       .catch(error => {
@@ -114,14 +115,6 @@ const App = () => {
 
   const openModal = (book) => {
     console.log('open modal');
-    console.log(book);
-    setBook(book);
-    if (Object.keys(book).length === 0) {
-      setIsEdit(false)
-    } else {
-      setIsEdit(true)
-    }
-
     document.getElementById('form').style.display = 'block'
   }
 
@@ -148,12 +141,23 @@ const App = () => {
       setfileteredBooks(listBooks);
     }
   }
+
+const enableEdit = () =>{
+  console.log('enable edit');
+  console.log('isEdit --->' , isEdit);
+  setIsEdit(false);
+
+}
+
   console.log(listBooks.length);
   const linkStyle = {
     margin: "1rem",
     textDecoration: "none",
     color: '#4E5F75'
   };
+
+
+
   return (
 
     <>
@@ -170,8 +174,8 @@ const App = () => {
         </Router>):
         (<LoginForm username={username} password={password} setUsername={setUsername} setPassword={setPassword} doLogin={handleLogin} />)}
 
-      <Form book={selectedBook} setBook={setBook} addBook={addBook} isEdit={isEdit} editBook={editBook} />
-      <Detail book={selectedBook} setBook={setBook} editBook={editBook} deleteBook={deleteBook} />
+      <Form book={selectedBook} setBook={setBook} addBook={addBook}  editBook={editBook} />
+      <Detail book={selectedBook} setBook={setBook} editBook={editBook} deleteBook={deleteBook} isEdit ={isEdit} enableEdit={enableEdit}/>
     </>
 
   )

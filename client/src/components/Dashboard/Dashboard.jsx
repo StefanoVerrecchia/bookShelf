@@ -1,5 +1,5 @@
-import { useContext  } from 'react';
 import './dashboard.css'
+import addButton from '../../Assets/addButton.png'
 const Dashboard = ({ openModal, openDetail, fileteredBooks, filterArray}) => {
     console.log('fileteredBooks');
     console.log(fileteredBooks);
@@ -17,7 +17,7 @@ const Dashboard = ({ openModal, openDetail, fileteredBooks, filterArray}) => {
             <div className="dashBoardHeader">
                 <input type='search' placeholder='Cerca Libro' onChange={handleSearch} />
                 <button onClick={() => showModal({})}>
-                    Aggiungi
+                    <img src ={addButton} ></img>
                 </button>
             </div>
             <div className="dashBoardContent">

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './form.css'
-const Form = ({ book, setBook, addBook, isEdit, editBook }) => {
+const Form = ({ book, setBook, addBook, editBook }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.currentTarget;
@@ -13,11 +13,7 @@ const Form = ({ book, setBook, addBook, isEdit, editBook }) => {
     };
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        if (isEdit) {
-            editBook(book);
-        } else {
             addBook(book);
-        }
     }
     return (
         <>
@@ -49,10 +45,8 @@ const Form = ({ book, setBook, addBook, isEdit, editBook }) => {
                                     </tr>
                                     <tr>
                                         <td>
-                                            {
-                                                isEdit ? (<button type="submit">Modifica</button>) :
-                                                    (<button type="submit">Aggiungi</button>)
-                                            }
+                                            
+                                                    <button type="submit">Aggiungi</button>
 
                                         </td>
                                     </tr>
